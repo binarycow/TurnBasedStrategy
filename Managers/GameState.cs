@@ -6,7 +6,8 @@ using System;
 namespace StrategyGame.Managers
 {
     public enum PlayerTurn { Blue, Red };
-    static class GameState
+
+    internal static class GameState
     {
         private static bool onMainMenu = false;
         private static bool gameIsRunning = false;

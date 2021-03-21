@@ -10,41 +10,41 @@ using System;
 
 namespace StrategyGame.Screens
 {
-    class GameScreen : IScreen
+    internal class GameScreen : IScreen
     {
-        ScreenManager screenManager;
+        private ScreenManager screenManager;
 
-        List<GameObject> screenElements;
+        private List<GameObject> screenElements;
 
-        Panel gameArea;
-        Panel inspectorPanel;
-        Panel inspectorWindow;
-        Panel statusPanel;
-        Panel rightPanel;
-        Panel messagePanel;
-        Panel messageLogPanel;
+        private Panel gameArea;
+        private Panel inspectorPanel;
+        private Panel inspectorWindow;
+        private Panel statusPanel;
+        private Panel rightPanel;
+        private Panel messagePanel;
+        private Panel messageLogPanel;
 
-        Button inspectorButton;
-        Button mapButton;
-        Button endTurnButton;
-        Button mainMenuButton;
+        private Button inspectorButton;
+        private Button mapButton;
+        private Button endTurnButton;
+        private Button mainMenuButton;
 
-        Label playerTurnLabel;
-        Label messageTitleLabel;
-        Label messageLogLabel;
-        Label goldTextLabel;
-        Label goldValueLabel;
-        Label goldProductionLabel;
-        Label unitsTextLabel;
-        Label unitsValueLabel;
-        Label selectedStaticLabel;
-        Label selectedVariableLabel;
-        Label tileStatusStaticLabel;
-        Label tileStatusVariableLabel;
-        Label tileInfoStaticLabel;
-        Label tileInfoVariableLabel;
+        private Label playerTurnLabel;
+        private Label messageTitleLabel;
+        private Label messageLogLabel;
+        private Label goldTextLabel;
+        private Label goldValueLabel;
+        private Label goldProductionLabel;
+        private Label unitsTextLabel;
+        private Label unitsValueLabel;
+        private Label selectedStaticLabel;
+        private Label selectedVariableLabel;
+        private Label tileStatusStaticLabel;
+        private Label tileStatusVariableLabel;
+        private Label tileInfoStaticLabel;
+        private Label tileInfoVariableLabel;
 
-        Grid grid;
+        private Grid grid;
 
         private bool displayInspector = true;
 

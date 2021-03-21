@@ -4,7 +4,7 @@ using StrategyGame.Managers;
 
 namespace StrategyGame.GUI
 {
-    class Panel : GameObject
+    internal class Panel : GameObject
     {
         public int BorderWidth { get; private set; }
         private Color borderColor;

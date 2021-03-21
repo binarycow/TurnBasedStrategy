@@ -5,7 +5,7 @@ using System;
 
 namespace StrategyGame.Screens
 {
-    interface IScreen
+    internal interface IScreen
     {
         void Initialize(ScreenManager screenManager);
         void Reinitialize(object sender, EventArgs e);

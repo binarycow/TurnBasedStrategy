@@ -7,14 +7,14 @@ using System;
 
 namespace StrategyGame.Screens
 {
-    class MenuScreen : IScreen
+    internal class MenuScreen : IScreen
     {
-        ScreenManager screenManager;
-        Rectangle logoPosition;
+        private ScreenManager screenManager;
+        private Rectangle logoPosition;
 
-        Button newGameBtn;
-        Button optionsBtn;
-        Button exitGameBtn;
+        private Button newGameBtn;
+        private Button optionsBtn;
+        private Button exitGameBtn;
 
         public void Initialize(ScreenManager screenManager)
         {

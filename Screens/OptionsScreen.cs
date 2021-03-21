@@ -8,20 +8,20 @@ using System.Collections.Generic;
 
 namespace StrategyGame.Managers
 {
-    class OptionsScreen : IScreen
+    internal class OptionsScreen : IScreen
     {
-        ScreenManager screenManager;
-        Label screenTitle;
-        Button debugButton;
-        Button backButton;
-        Button musicButton;
-        Button fullScreenButton;
-        Button resolutionButton;
-        Button lowResButton;
-        Button highDefButton;
+        private ScreenManager screenManager;
+        private Label screenTitle;
+        private Button debugButton;
+        private Button backButton;
+        private Button musicButton;
+        private Button fullScreenButton;
+        private Button resolutionButton;
+        private Button lowResButton;
+        private Button highDefButton;
 
-        List<Button> optionsMenuButtons;
-        List<Button> subMenuButtons;
+        private List<Button> optionsMenuButtons;
+        private List<Button> subMenuButtons;
         private bool inSubmenu;
 
         public void Initialize(ScreenManager screenManager)

@@ -1,6 +1,6 @@
 ﻿namespace StrategyGame.Managers
 {
-    static class EventService
+    internal static class EventService
     {
         public static void Initialize()
         {

@@ -6,11 +6,11 @@ using StrategyGame.Screens;
 
 namespace StrategyGame.Managers
 {
-    class ScreenManager
+    internal class ScreenManager
     {
-        StrategyGame game;
-        Stack<IScreen> screens;
-        IScreen currentScreen;
+        private StrategyGame game;
+        private Stack<IScreen> screens;
+        private IScreen currentScreen;
         
         public ScreenManager(IScreen startScreen, StrategyGame game)
         {
