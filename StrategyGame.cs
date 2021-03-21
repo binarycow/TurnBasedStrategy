@@ -9,15 +9,13 @@ namespace StrategyGame
     public class StrategyGame : Game
     {
         private GraphicsDeviceManager graphics;
-        private readonly ScreenManager screenManager;
+        private ScreenManager screenManager;
 
         public StrategyGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            this.screenManager = new ScreenManager(new MenuScreen(), this);
-            this.Components.Add(this.screenManager);
         }
 
         protected override void Initialize()
@@ -34,6 +32,8 @@ namespace StrategyGame
             ContentService.Instance.LoadContent(Content, GraphicsDevice);
             GraphicsManager.Initialize(graphics);
             EventService.Initialize();
+            this.Components.Add(this.screenManager);
+            this.screenManager = new ScreenManager(new MenuScreen(), this);
         }
 
         protected override void Update(GameTime gameTime)
