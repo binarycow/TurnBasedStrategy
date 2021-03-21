@@ -11,14 +11,15 @@ namespace StrategyGame
     public class StrategyGame : Game
     {
         private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
-        private ScreenManager screenManager;
+        private readonly ScreenManager screenManager;
 
         public StrategyGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            this.screenManager = new ScreenManager(new MenuScreen(), this);
+            this.Components.Add(this.screenManager);
         }
 
         protected override void Initialize()
@@ -32,9 +33,7 @@ namespace StrategyGame
 
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
             ContentService.Instance.LoadContent(Content, GraphicsDevice);
-            screenManager = new ScreenManager(new MenuScreen(), this);
             GraphicsManager.Initialize(graphics);
             EventService.Initialize();
         }
@@ -44,14 +43,12 @@ namespace StrategyGame
             Input.Update();
             if (Input.KeyIsPressed(Keys.Escape) && GameState.GameIsRunning)
                 screenManager.Menu();
-            screenManager.Update(gameTime);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Settings.GraphicsDeviceColor);
-            screenManager.Draw(spriteBatch);
             base.Draw(gameTime);
         }
     }

@@ -6,15 +6,15 @@ using StrategyGame.Screens;
 
 namespace StrategyGame.Managers
 {
-    internal class ScreenManager
+    internal class ScreenManager : DrawableGameComponent
     {
-        private StrategyGame game;
-        private Stack<IScreen> screens;
+        private readonly Stack<IScreen> screens;
         private IScreen currentScreen;
-        
-        public ScreenManager(IScreen startScreen, StrategyGame game)
+        private readonly SpriteBatch spriteBatch;
+
+        public ScreenManager(IScreen startScreen, StrategyGame game) : base(game)
         {
-            this.game = game;
+            this.spriteBatch = new SpriteBatch(game.GraphicsDevice);
             screens = new Stack<IScreen>();
             SetCurrentScreen(startScreen);
             PushScreen(currentScreen);
@@ -44,7 +44,7 @@ namespace StrategyGame.Managers
             if (screens.Count > 0)
                 SetCurrentScreen(screens.Peek());
             else
-                game.Exit();
+                Game.Exit();
         }
 
         public void RemoveAllScreens()
@@ -116,17 +116,18 @@ namespace StrategyGame.Managers
 
         public void ExitGame(object source, EventArgs args)
         {
-            game.Exit();
+            Game.Exit();
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime)
         {
-            currentScreen.Draw(spriteBatch);
+            this.currentScreen.Draw(this.spriteBatch);
+            base.Draw(gameTime);
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            if (game.IsActive)
+            if (Game.IsActive)
             {
                 GameState.WindowInFocus = true;
                 currentScreen.Update(gameTime);
