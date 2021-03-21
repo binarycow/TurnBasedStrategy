@@ -7,8 +7,8 @@ namespace StrategyGame
         [STAThread]
         private static void Main()
         {
-            using (var game = new StrategyGame())
-                game.Run();
+            using var game = new StrategyGame();
+            game.Run();
         }
     }
 }
