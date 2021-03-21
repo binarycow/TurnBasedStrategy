@@ -1,9 +1,9 @@
-﻿using StrategyGame.Managers;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
+using StrategyGame.Managers;
 
-namespace StrategyGame.Screens
+namespace StrategyGame
 {
     internal interface IScreen
     {

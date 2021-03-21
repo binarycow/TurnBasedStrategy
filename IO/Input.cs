@@ -1,8 +1,7 @@
-﻿
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace StrategyGame
+namespace StrategyGame.IO
 {
     public class Input
     {

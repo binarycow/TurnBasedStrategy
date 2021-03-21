@@ -1,12 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using StrategyGame.Media;
-using StrategyGame.IO;
-using StrategyGame.Screens;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using StrategyGame.IO;
+using StrategyGame.Managers;
+using StrategyGame.Media;
 
-namespace StrategyGame.Managers
+namespace StrategyGame.Screens
 {
     internal class OptionsScreen : IScreen
     {
@@ -29,75 +29,75 @@ namespace StrategyGame.Managers
             this.screenManager = screenManager;
 
             // Subscribe to changes in resolution
-            GraphicsManager.ResolutionChanged += Reinitialize;
+            GraphicsManager.ResolutionChanged += this.Reinitialize;
 
-            optionsMenuButtons = new List<Button>();
-            subMenuButtons = new List<Button>();
-            inSubmenu = false;
+            this.optionsMenuButtons = new List<Button>();
+            this.subMenuButtons = new List<Button>();
+            this.inSubmenu = false;
 
             Rectangle view = GraphicsManager.Viewport.Bounds;
             Point screenCenter = GraphicsManager.Viewport.Bounds.Center;
             
-            resolutionButton = CreateCenterAlignedButton("Change Resolution", screenCenter.X, screenCenter.Y - 100);
-            musicButton = CreateCenterAlignedButton("Toggle Music", screenCenter.X, screenCenter.Y - 25);
-            debugButton = CreateCenterAlignedButton("Toggle Debug", screenCenter.X, screenCenter.Y + 50);
+            this.resolutionButton = this.CreateCenterAlignedButton("Change Resolution", screenCenter.X, screenCenter.Y - 100);
+            this.musicButton = this.CreateCenterAlignedButton("Toggle Music", screenCenter.X, screenCenter.Y - 25);
+            this.debugButton = this.CreateCenterAlignedButton("Toggle Debug", screenCenter.X, screenCenter.Y + 50);
 
-            lowResButton = CreateCenterAlignedButton("1280 x 720", screenCenter.X, screenCenter.Y - 100);
-            highDefButton = CreateCenterAlignedButton("1920 x 1080", screenCenter.X, screenCenter.Y - 25);
-            fullScreenButton = CreateCenterAlignedButton("Toggle Fullscreen", screenCenter.X, screenCenter.Y + 50);
+            this.lowResButton = this.CreateCenterAlignedButton("1280 x 720", screenCenter.X, screenCenter.Y - 100);
+            this.highDefButton = this.CreateCenterAlignedButton("1920 x 1080", screenCenter.X, screenCenter.Y - 25);
+            this.fullScreenButton = this.CreateCenterAlignedButton("Toggle Fullscreen", screenCenter.X, screenCenter.Y + 50);
 
-            backButton = CreateCenterAlignedButton("Back", screenCenter.X, debugButton.Y + 125);
-            screenTitle = AddLabelCenter("Options Menu", screenCenter.X, resolutionButton.Y - 175);
+            this.backButton = this.CreateCenterAlignedButton("Back", screenCenter.X, this.debugButton.Y + 125);
+            this.screenTitle = this.AddLabelCenter("Options Menu", screenCenter.X, this.resolutionButton.Y - 175);
 
-            optionsMenuButtons.Add(resolutionButton);
-            optionsMenuButtons.Add(musicButton);
-            optionsMenuButtons.Add(debugButton);
+            this.optionsMenuButtons.Add(this.resolutionButton);
+            this.optionsMenuButtons.Add(this.musicButton);
+            this.optionsMenuButtons.Add(this.debugButton);
 
-            subMenuButtons.Add(fullScreenButton);
-            subMenuButtons.Add(lowResButton);
-            subMenuButtons.Add(highDefButton);
+            this.subMenuButtons.Add(this.fullScreenButton);
+            this.subMenuButtons.Add(this.lowResButton);
+            this.subMenuButtons.Add(this.highDefButton);
 
             // Assign Event Subscribers
-            backButton.ButtonPressed += PreviousScreen;
-            debugButton.ButtonPressed += screenManager.ToggleDebug;
-            musicButton.ButtonPressed += screenManager.ToggleMusic;
-            resolutionButton.ButtonPressed += NavigateSubMenu;
-            fullScreenButton.ButtonPressed += screenManager.ToggleFullscreen;
-            lowResButton.ButtonPressed += screenManager.ToggleLowRes;
-            highDefButton.ButtonPressed += screenManager.ToggleHighRes;
+            this.backButton.ButtonPressed += this.PreviousScreen;
+            this.debugButton.ButtonPressed += screenManager.ToggleDebug;
+            this.musicButton.ButtonPressed += screenManager.ToggleMusic;
+            this.resolutionButton.ButtonPressed += this.NavigateSubMenu;
+            this.fullScreenButton.ButtonPressed += screenManager.ToggleFullscreen;
+            this.lowResButton.ButtonPressed += screenManager.ToggleLowRes;
+            this.highDefButton.ButtonPressed += screenManager.ToggleHighRes;
 
-            SetMenuButtonAudio(debugButton);
-            SetMenuButtonAudio(musicButton);
-            SetMenuButtonAudio(resolutionButton);
-            SetMenuButtonAudio(fullScreenButton);
-            SetMenuButtonAudio(lowResButton);
-            SetMenuButtonAudio(highDefButton);
+            this.SetMenuButtonAudio(this.debugButton);
+            this.SetMenuButtonAudio(this.musicButton);
+            this.SetMenuButtonAudio(this.resolutionButton);
+            this.SetMenuButtonAudio(this.fullScreenButton);
+            this.SetMenuButtonAudio(this.lowResButton);
+            this.SetMenuButtonAudio(this.highDefButton);
 
-            backButton.Hover = Audio.OnMenuHover;
-            backButton.Click = Audio.MenuBack;
+            this.backButton.Hover = Audio.OnMenuHover;
+            this.backButton.Click = Audio.MenuBack;
         }
         private void PreviousScreen(object sender, EventArgs e)
         {
-            if (inSubmenu)
-                inSubmenu = !inSubmenu;
+            if (this.inSubmenu)
+                this.inSubmenu = !this.inSubmenu;
             else
-                screenManager.PreviousScreen(sender, e);
+                this.screenManager.PreviousScreen(sender, e);
         }
 
         private void NavigateSubMenu(object sender, EventArgs e)
         {
-            inSubmenu = !inSubmenu;
+            this.inSubmenu = !this.inSubmenu;
         }
 
         public void Update(GameTime gameTime)
         {
-            if (inSubmenu)
-                foreach (var button in subMenuButtons)
+            if (this.inSubmenu)
+                foreach (var button in this.subMenuButtons)
                     button.Update(gameTime);
             else
-                foreach (var button in optionsMenuButtons)
+                foreach (var button in this.optionsMenuButtons)
                     button.Update(gameTime);
-            backButton.Update(gameTime);
+            this.backButton.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -105,14 +105,14 @@ namespace StrategyGame.Managers
             spriteBatch.Begin();
             spriteBatch.Draw(GraphicsManager.GetTextureOfColor(Settings.BackdropColor), GraphicsManager.Viewport.Bounds, Color.White);
             
-            screenTitle.Draw(spriteBatch);
-            backButton.Draw(spriteBatch);
+            this.screenTitle.Draw(spriteBatch);
+            this.backButton.Draw(spriteBatch);
 
-            if (inSubmenu)
-                foreach (var button in subMenuButtons)
+            if (this.inSubmenu)
+                foreach (var button in this.subMenuButtons)
                     button.Draw(spriteBatch);
             else
-                foreach (var button in optionsMenuButtons)
+                foreach (var button in this.optionsMenuButtons)
                     button.Draw(spriteBatch);
 
             spriteBatch.End();
@@ -125,7 +125,7 @@ namespace StrategyGame.Managers
 
         public Button CreateCenterAlignedButton(string title, int x, int y)
         {
-            Button button = CreateButton(title, x, y);
+            Button button = this.CreateButton(title, x, y);
             GraphicsManager.CenterGameObjectX(button);
             return button;
         }
@@ -145,7 +145,7 @@ namespace StrategyGame.Managers
 
         public void Reinitialize(object sender, EventArgs e)
         {
-            Initialize(screenManager);
+            this.Initialize(this.screenManager);
         }
     }
 

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using StrategyGame.Screens;
 using System.Diagnostics;
+using StrategyGame.IO;
 
 namespace StrategyGame
 {
