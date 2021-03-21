@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework.Media;
 using StrategyGame.Managers;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StrategyGame.Media
 {

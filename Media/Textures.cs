@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using StrategyGame.Managers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StrategyGame.Media
 {

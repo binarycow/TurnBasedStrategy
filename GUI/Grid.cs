@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using StrategyGame.IO;
-using StrategyGame.Media;
 using StrategyGame.Managers;
 
 namespace StrategyGame.GUI

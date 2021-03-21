@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using StrategyGame.Media;
 using StrategyGame.GUI;
 using StrategyGame.IO;
-using System.Diagnostics;
 using System.Collections.Generic;
 using System;
 
